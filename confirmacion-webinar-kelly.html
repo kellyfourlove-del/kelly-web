@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Estás dentro! — Webinar Kelly Rincón</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #080808;
+  --card: #141414;
+  --border: #1E1E1E;
+  --orange: #FF5C1A;
+  --green: #8BFF00;
+  --white: #F2F0EB;
+  --muted: #5A5A5A;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.wrap { max-width: 640px; width: 100%; }
+
+/* CHECK ANIMADO */
+.check-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.check-circle {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s ease infinite;
+}
+
+.check-circle svg {
+  width: 36px; height: 36px;
+  stroke: var(--orange);
+  stroke-width: 2.5;
+  fill: none;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: draw 0.8s ease 0.3s forwards;
+}
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,92,26,0.3); }
+  50% { box-shadow: 0 0 0 12px rgba(255,92,26,0); }
+}
+
+/* HEADER */
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--green);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 6vw, 52px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.title em { font-style: italic; color: var(--orange); }
+
+.subtitle {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.8;
+  margin-bottom: 48px;
+}
+
+/* EVENTO INFO */
+.evento-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.evento-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--orange), var(--green));
+}
+
+.evento-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.evento-icon {
+  width: 36px; height: 36px;
+  background: rgba(255,92,26,0.1);
+  border: 1px solid rgba(255,92,26,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.evento-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.evento-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--white);
+}
+
+/* PASOS */
+.pasos-title {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pasos-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.pasos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.paso {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.paso-num {
+  width: 28px; height: 28px;
+  background: var(--orange);
+  color: var(--black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.paso-body {}
+
+.paso-titulo {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.paso-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.paso-desc a {
+  color: var(--orange);
+  text-decoration: none;
+}
+
+/* DIVIDER QUOTE */
+.quote {
+  border-left: 2px solid var(--orange);
+  padding: 16px 20px;
+  margin: 36px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.5;
+}
+
+/* WHILE YOU WAIT */
+.wait-title {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.recursos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.recurso-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px 20px;
+  text-decoration: none;
+  transition: border-color 0.2s;
+  display: block;
+}
+
+.recurso-btn:hover { border-color: var(--orange); }
+
+.recurso-btn-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.recurso-btn-title {
+  font-size: 13px;
+  color: var(--white);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* CTA WORKBOOK */
+.cta-workbook {
+  background: rgba(255,92,26,0.08);
+  border: 1px solid rgba(255,92,26,0.2);
+  border-radius: 4px;
+  padding: 28px 28px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.cta-workbook p {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: var(--black);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover { opacity: 0.88; }
+
+.btn-ghost {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 13px 32px;
+  border-radius: 2px;
+  transition: border-color 0.2s, color 0.2s;
+  margin-top: 8px;
+}
+
+.btn-ghost:hover { border-color: var(--white); color: var(--white); }
+
+/* FOOTER */
+.footer-sig {
+  text-align: center;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+
+.footer-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.footer-role {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 11px;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--orange); }
+
+@media (max-width: 500px) {
+  .recursos { grid-template-columns: 1fr; }
+  .evento-card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- CHECK -->
+  <div class="check-wrap">
+    <div class="check-circle">
+      <svg viewBox="0 0 24 24">
+        <polyline points="4,12 9,17 20,7"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <p class="eyebrow">Registro confirmado</p>
+  <h1 class="title">Ya estás <em>dentro.</em></h1>
+  <p class="subtitle">Te guardamos tu espacio en el webinar. Revisa tu correo — te enviamos la confirmación con todos los detalles.</p>
+
+  <!-- EVENTO INFO -->
+  <div class="evento-card">
+    <div class="evento-row">
+      <div class="evento-icon">📅</div>
+      <div>
+        <span class="evento-label">Fecha y hora</span>
+        <span class="evento-value">Miércoles 7 de mayo · 7:00 PM (Colombia)</span>
+      </div>
+    </div>
+    <div class="evento-row">
+      <div class="evento-icon">💻</div>
+      <div>
+        <span class="evento-label">Formato</span>
+        <span class="evento-value">100% virtual · Link llegará a tu correo 1 hora antes</span>
+      </div>
+    </div>
+    <div class="evento-row">
+      <div class="evento-icon">⏱</div>
+      <div>
+        <span class="evento-label">Duración</span>
+        <span class="evento-value">50 minutos + preguntas en vivo</span>
+      </div>
+    </div>
+    <div class="evento-row">
+      <div class="evento-icon">🎙</div>
+      <div>
+        <span class="evento-label">Ponentes</span>
+        <span class="evento-value">Kelly Rincón + Damaris · Wealth Management & Banca Privada</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASOS -->
+  <p class="pasos-title">Mientras llega el día</p>
+
+  <div class="pasos">
+    <div class="paso">
+      <div class="paso-num">1</div>
+      <div class="paso-body">
+        <p class="paso-titulo">Agrega el evento a tu calendario</p>
+        <p class="paso-desc">Para que no se te olvide. El link de la sesión te llega al correo 1 hora antes del evento.</p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="paso-num">2</div>
+      <div class="paso-body">
+        <p class="paso-titulo">Haz el diagnóstico gratuito</p>
+        <p class="paso-desc">Llega al webinar con tu diagnóstico hecho — la sesión va a tener mucho más impacto. <a href="https://kellyfourlove-del.github.io/Diagn-stico-Kelly/index.html" target="_blank">Acceder al workbook →</a></p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="paso-num">3</div>
+      <div class="paso-body">
+        <p class="paso-titulo">Trae una pregunta concreta</p>
+        <p class="paso-desc">Piensa en una decisión financiera que hayas pospuesto. En el Q&A tendrás la oportunidad de plantearla en vivo.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote">
+    "El peor riesgo no es el que ves. Es el que no estás viendo."
+  </div>
+
+  <!-- RECURSOS MIENTRAS ESPERAS -->
+  <p class="wait-title">Recursos gratuitos para prepararte</p>
+
+  <div class="recursos">
+    <a href="https://kellyfourlove-del.github.io/Diagn-stico-Kelly/index.html" target="_blank" class="recurso-btn">
+      <span class="recurso-btn-label">Workbook</span>
+      <span class="recurso-btn-title">Diagnóstico de Creencias Limitantes</span>
+    </a>
+    <a href="https://inmunidad-patrimonial-8r5s.vercel.app/" target="_blank" class="recurso-btn">
+      <span class="recurso-btn-label">Diagnóstico</span>
+      <span class="recurso-btn-title">Inmunidad Patrimonial</span>
+    </a>
+    <a href="https://drive.google.com/file/d/1QnONJpf8XO5S9V6TJiFPh_TwEetwaj_D/view" target="_blank" class="recurso-btn">
+      <span class="recurso-btn-label">Guía PDF</span>
+      <span class="recurso-btn-title">Fondo de Emergencias</span>
+    </a>
+    <a href="https://www.linkedin.com/newsletters/finanzas-conscientes-7204654356405571585" target="_blank" class="recurso-btn">
+      <span class="recurso-btn-label">Newsletter</span>
+      <span class="recurso-btn-title">Finanzas Conscientes · 2.551 lectores</span>
+    </a>
+  </div>
+
+  <!-- CTA WORKBOOK -->
+  <div class="cta-workbook">
+    <p>¿Quieres ir más allá del webinar?<br>Si después de la sesión quieres aplicar todo a tu caso específico, tenemos espacios de consultoría 1:1 disponibles.</p>
+    <a href="https://wa.link/cnx705" target="_blank" class="btn-primary">Agendar sesión privada →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-sig">
+    <p class="footer-name">Kelly Johanna Rincón Pastrana</p>
+    <p class="footer-role">Estratega en Blindaje Patrimonial · Finance Planner BMI Colombia</p>
+    <div class="footer-links">
+      <a href="https://www.kellyrincon.com" target="_blank">kellyrincon.com</a>
+      <a href="https://www.linkedin.com/in/kelly-johanna-rinc%C3%B3n-pastrana-asesora-financiera-inversiones" target="_blank">LinkedIn</a>
+      <a href="https://wa.link/cnx705" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
